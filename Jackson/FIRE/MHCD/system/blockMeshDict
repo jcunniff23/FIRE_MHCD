@@ -1,0 +1,403 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.00005;
+
+vertices
+(
+    //A
+    (0 0 0) //0
+    (2 0 0) //1
+    (2 2 0) //2
+    (0 2 0) //3
+    (0 0 1) //4
+    (2 0 1) //5
+    (2 2 1) //6
+    (0 2 1) //7
+    
+    //B
+    (2 0 0) //8
+    (4 0 0) //9
+    (4 2 0) //10
+    (2 2 0) //11
+    (2 0 1) //12
+    (4 0 1) //13
+    (4 2 1) //14
+    (2 2 1) //15
+
+    //C
+    (4 0 0) //16
+    (5 0 0) //17
+    (5 2 0) //18
+    (4 2 0) //19
+    (4 0 1) //20
+    (5 0 1) //21
+    (5 2 1) //22
+    (4 2 1) //23
+
+    //D
+    (5 0 0) //24
+    (7 0 0) //25
+    (7 2 0) //26
+    (5 2 0) //27
+    (5 0 1) //28
+    (7 0 1) //29
+    (7 2 1) //30
+    (5 2 1) //31 
+
+    //E
+    (7 0 0) //32
+    (19 0 0) //33
+    (19 2 0) //34
+    (7 2 0) //35
+    (7 0 1) //36
+    (19 0 1) //37
+    (19 2 1) //38
+    (7 2 1) //39
+
+    //F
+    (0 2 0) //40
+    (2 2 0) //41
+    (2 4 0) //42
+    (0 4 0) //43
+    (0 2 1) //44
+    (2 2 1) //45
+    (2 4 1) //46
+    (0 4 1) //47
+
+    //G
+    (4 2 0) //48
+    (5 2 0) //49
+    (5 4 0) //50
+    (4 4 0) //51
+    (4 2 1) //52
+    (5 2 1) //53
+    (5 4 1) //54
+    (4 4 1) //55
+
+    //H
+    (7 2 0) //56
+    (19 2 0) //57
+    (19 4 0) //58
+    (7 4 0) //59
+    (7 2 1) //60
+    (19 2 1) //61
+    (19 4 1) //62
+    (7 4 1) //63
+
+    //I
+    (7 4 0) //64
+    (19 4 0) //65
+    (19 20 0) //66
+    (7 20 0) //67
+    (7 4 1) //68
+    (19 4 1) //69
+    (19 20 1) //70
+    (7 20 1) //71
+
+    //J
+    (4 4 0) //72
+    (5 4 0) //73
+    (5 20 0) //74
+    (4 20 0) //75
+    (4 4 1) //76
+    (5 4 1) //77
+    (5 20 1) //78
+    (4 20 1) //79
+
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (10 10 10) simpleGrading (1 1 1) //A
+    hex (8 9 10 11 12 13 14 15) (50 50 10) simpleGrading (1 1 1) //B
+    hex (16 17 18 19 20 21 22 23) (50 50 10) simpleGrading (1 1 1) //C
+    hex (24 25 26 27 28 29 30 31) (50 50 10) simpleGrading (1 1 1) //D
+    hex (32 33 34 35 36 37 38 39) (80 80 10) simpleGrading (1 1 1) //E
+    hex (40 41 42 43 44 45 46 47) (50 50 10) simpleGrading (1 1 1) //F
+    hex (48 49 50 51 52 53 54 55) (50 50 10) simpleGrading (1 1 1) //G
+    hex (56 57 58 59 60 61 62 63) (80 80 10) simpleGrading (1 1 1) //H
+    hex (64 65 66 67 68 69 70 71) (100 100 10) simpleGrading (1 1 1) //I
+    hex (72 73 74 75 76 77 78 79) (25 100 10) simpleGrading (1 1 1) //J
+);
+
+edges
+(
+  
+);
+
+boundary
+(
+    top
+    {
+        type patch;
+        faces
+        (
+            (43 47 46 42) //top of block F
+            (75 79 78 74) //top of block J
+            (67 71 70 66) //top of block I
+        );
+    }
+    
+    left
+    {
+        type patch;
+        faces
+        (
+            (40 44 47 43) //left face F
+            (0 4 3 7) //left face A
+            
+        );
+    }
+
+    right
+    {
+        type patch;
+        faces
+        (
+            (65 69 70 66) //right face of I
+            (57 61 62 58) //right face of H
+            (33 37 38 34) //right face of E
+        );
+    }
+
+    bottom
+    {
+        type patch;
+        faces
+        (
+            (0 4 5 1) //bottom face A 
+            (8 12 13 9) //bottom face B
+            (16 20 21 17) //bottom face C
+            (24 28 29 25) //bottom face D
+            (32 36 37 33) //bottom face E
+        );
+    }
+
+    anode
+    {
+        type patch;
+        faces
+        (
+            (27 31 30 26) //top face D
+            (49 53 54 50) //right face G
+            (73 77 78 74) // right face J
+            
+        );
+
+    }
+    
+    cathode
+    {
+        type patch;
+        faces
+        (
+            (72 76 79 75) // left face J
+            (48 52 55 51) // left face G
+            (11 15 14 10) //top face B
+        );
+
+    }
+    /*
+    mica
+    {
+        type patch;
+        faces
+        (
+            //(52 53 54 55) //front face G
+            //(20 21 22 23) //front face C
+        );
+    }
+*/
+
+    int_A_right
+    {
+        type patch;
+        faces
+        (
+            (1 5 6 2)
+        );
+    }
+
+    int_A_top
+    {
+        type patch;
+        faces
+        (
+            (3 7 6 2)
+        );
+    }
+
+    int_B_left
+    {
+        type patch;
+        faces
+        (
+            (8 12 15 11)
+        );
+    }
+
+    int_B_right
+    {
+        type patch;
+        faces
+        (
+            (9 13 14 10)
+        );
+    }
+
+    int_C_left
+    {
+        type patch;
+        faces
+        (
+            (16 20 23 19)
+        );
+    }
+
+    int_C_top
+    {
+        type patch;
+        faces
+        (
+            (19 23 22 18)
+        );
+    }
+
+    int_C_right
+    {
+        type patch;
+        faces
+        (
+            (17 21 22 18)
+        );
+    }
+
+    int_D_left
+    {
+        type patch;
+        faces
+        (
+            (24 28 31 27)
+        );
+    }
+
+    int_D_right
+    {
+        type patch;
+        faces
+        (
+            (25 29 30 26)
+        );
+    }
+
+    int_E_left
+    {
+        type patch;
+        faces
+        (
+            (32 36 39 35)
+        );
+    }
+
+    int_E_top
+    {
+        type patch;
+        faces
+        (
+            (35 39 38 34)
+        );
+    }
+
+    int_F_bottom
+    {
+        type patch;
+        faces
+        (
+            (40 44 45 41)
+        );
+    }
+
+    int_G_top
+    {
+        type patch;
+        faces
+        (
+            (51 55 54 50)
+        );
+    }
+
+    int_G_bottom
+    {
+        type patch;
+        faces
+        (
+            (48 52 53 49)
+        );
+    }
+
+    int_H_top
+    {
+        type patch;
+        faces
+        (
+            (59 63 62 58)
+        );
+    }
+
+    int_H_bottom
+    {
+        type patch;
+        faces
+        (
+            (56 60 61 57)
+        );
+    }
+
+    int_I_bottom
+    {
+        type patch;
+        faces
+        (
+            (64 68 69 65)
+        );
+    }
+
+    int_J_bottom
+    {
+        type patch;
+        faces
+        (
+            (72 76 77 73)
+        );
+    }
+
+);
+
+mergePatchPairs
+(
+    (int_A_top int_F_bottom)
+    (int_A_right int_B_left)
+    (int_B_right int_C_left)
+    (int_C_top int_G_bottom)
+    (int_C_right int_D_left)
+    (int_D_right int_E_left)
+    //(int_E_top int_H_bottom)
+    (int_H_top int_I_bottom)
+    (int_G_top int_J_bottom)
+);
+
+// ************************************************************************* //
