@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "custom_icoFoam.C": "cpp",
-        "icoFoam.C": "cpp",
-        "myicoFoam.C": "cpp"
-    }
-}
